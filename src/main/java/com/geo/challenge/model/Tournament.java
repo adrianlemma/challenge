@@ -3,6 +3,8 @@ package com.geo.challenge.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tournament")
@@ -12,23 +14,19 @@ public class Tournament {
     @Column(name = "tournament_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tournamentId;
-
-    private String description;
+    @Column(unique = true)
+    private String name;
     private Date date;
     private String type;
-
-    @OneToOne
-    @JoinColumn(referencedColumnName = "player_id")
+    private Integer competitors;
+    @ManyToOne
+    @JoinColumn(name = "winner_player_id")
     private Player winner;
+    @OneToMany(mappedBy = "tournament")
+    private List<TournamentPhase> phases;
 
-    public Tournament() { }
-
-    public Tournament(Integer tournamentId, String description, Date date, String type, Player winner) {
-        this.tournamentId = tournamentId;
-        this.description = description;
-        this.date = date;
-        this.type = type;
-        this.winner = winner;
+    public Tournament() {
+        this.phases = new ArrayList<>();
     }
 
     public Integer getTournamentId() {
@@ -39,12 +37,12 @@ public class Tournament {
         this.tournamentId = tournamentId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getDate() {
@@ -63,6 +61,14 @@ public class Tournament {
         this.type = type;
     }
 
+    public Integer getCompetitors() {
+        return competitors;
+    }
+
+    public void setCompetitors(Integer competitors) {
+        this.competitors = competitors;
+    }
+
     public Player getWinner() {
         return winner;
     }
@@ -70,4 +76,18 @@ public class Tournament {
     public void setWinner(Player winner) {
         this.winner = winner;
     }
+
+    public List<TournamentPhase> getPhases() {
+        return phases;
+    }
+
+    public void setPhases(List<TournamentPhase> phases) {
+        this.phases = phases;
+    }
+
+    public void addPhase(TournamentPhase phase) {
+        this.phases.add(phase);
+    }
+
+
 }

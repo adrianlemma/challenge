@@ -25,7 +25,7 @@ public class PlayerServiceImpl implements PlayerService {
         try {
             return playerRepository.save(player);
         } catch (DataIntegrityViolationException ex) {
-            throw new PlayerException(PLAYER_NAME_DUPLICATED.getCode(), PLAYER_NAME_DUPLICATED.getDescription());
+            throw new PlayerException(PLAYER_NAME_DUPLICATED.getCode(), String.format(PLAYER_NAME_DUPLICATED.getDescription(), player.getName()));
         }
     }
 
@@ -42,5 +42,20 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Boolean exists(Integer playerId) {
         return playerRepository.existsByPlayerIdAndActive(playerId, true);
+    }
+
+    @Override
+    public List<Player> findRandomPlayers(Integer quantity, String gender) {
+        return playerRepository.findRandomPlayers(quantity, gender);
+    }
+
+    @Override
+    public List<Player> findPlayersByIds(List<Integer> playerIds, String gender) {
+        return playerRepository.findPlayersByIds(playerIds, gender);
+    }
+
+    @Override
+    public Integer countByGender(String gender) {
+        return playerRepository.countByGender(gender);
     }
 }

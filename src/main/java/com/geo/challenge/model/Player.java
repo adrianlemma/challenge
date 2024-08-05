@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "player")
-public class Player {
+public class Player implements Cloneable {
 
     @Id
     @Column(name = "player_id")
@@ -95,5 +95,10 @@ public class Player {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
