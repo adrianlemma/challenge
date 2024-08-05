@@ -2,6 +2,9 @@ package com.geo.challenge.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tournament_phase")
 public class TournamentPhase {
@@ -17,12 +20,11 @@ public class TournamentPhase {
 
     private Integer phaseNumber;
 
-    public TournamentPhase() { }
+    @OneToMany(mappedBy = "phase")
+    private List<TournamentPhaseGame> games;
 
-    public TournamentPhase(Integer phaseId, Tournament tournament, Integer phaseNumber) {
-        this.phaseId = phaseId;
-        this.tournament = tournament;
-        this.phaseNumber = phaseNumber;
+    public TournamentPhase() {
+        this.games = new ArrayList<>();
     }
 
     public Integer getPhaseId() {
@@ -48,4 +50,17 @@ public class TournamentPhase {
     public void setPhaseNumber(Integer phaseNumber) {
         this.phaseNumber = phaseNumber;
     }
+
+    public List<TournamentPhaseGame> getGames() {
+        return games;
+    }
+
+    public void setGames(List<TournamentPhaseGame> games) {
+        this.games = games;
+    }
+
+    public void addGame(TournamentPhaseGame game) {
+        this.games.add(game);
+    }
+
 }

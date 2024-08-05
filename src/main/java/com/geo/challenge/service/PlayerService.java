@@ -14,4 +14,9 @@ public interface PlayerService {
 
     Boolean exists(Integer playerId);
 
+    List<Player> findRandomPlayers(Integer quantity, String gender);
+
+    List<Player> findPlayersByIds(List<Integer> playerIds, String gender);
+
+    Integer countByGender(String gender);
 }
