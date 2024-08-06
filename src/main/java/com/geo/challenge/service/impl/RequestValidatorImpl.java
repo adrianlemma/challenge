@@ -99,6 +99,6 @@ public class RequestValidatorImpl implements RequestValidator {
                 return false;
             }
         }
-        return true;
+        return competitors != 1;
     }
 }
