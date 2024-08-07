@@ -12,15 +12,13 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     Optional<Player> findByPlayerIdAndActive(Integer playerId, Boolean active);
 
-    List<Player> findByActive(Boolean active);
-
     Boolean existsByPlayerIdAndActive(Integer playerId, Boolean active);
 
-    Integer countByGender(String gender);
+    Integer countByGenderAndActive(String gender, boolean active);
 
-    @Query(value = "SELECT * FROM Player WHERE gender = :gender ORDER BY RANDOM() LIMIT :quantity", nativeQuery = true)
+    @Query(value = "SELECT * FROM Player WHERE gender = :gender AND active = TRUE ORDER BY RANDOM() LIMIT :quantity", nativeQuery = true)
     List<Player> findRandomPlayers(@Param("quantity") Integer quantity, @Param("gender") String gender);
 
-    @Query(value = "SELECT * FROM Player WHERE gender = :gender AND player_id IN :playerIds ORDER BY RANDOM()", nativeQuery = true)
+    @Query(value = "SELECT * FROM Player WHERE gender = :gender AND active = TRUE AND player_id IN :playerIds ORDER BY RANDOM()", nativeQuery = true)
     List<Player> findPlayersByIds(@Param("playerIds") List<Integer> playerIds, @Param("gender") String gender);
 }

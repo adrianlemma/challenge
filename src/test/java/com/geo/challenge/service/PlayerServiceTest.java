@@ -71,10 +71,10 @@ class PlayerServiceTest {
     @Test
     @DisplayName("get-all-players")
     void testGetAllPlayers() {
-        when(playerRepository.findByActive(anyBoolean())).thenReturn(new ArrayList<>());
+        when(playerRepository.findAll()).thenReturn(new ArrayList<>());
         List<Player> result = service.getAllPlayers();
         assertNotNull(result);
-        verify(playerRepository).findByActive(anyBoolean());
+        verify(playerRepository).findAll();
     }
 
     @Test
@@ -107,9 +107,9 @@ class PlayerServiceTest {
     @Test
     @DisplayName("count-players-by-gender")
     void testCountPlayersByGender() {
-        when(playerRepository.countByGender(anyString())).thenReturn(5);
+        when(playerRepository.countByGenderAndActive(anyString(), anyBoolean())).thenReturn(5);
         Integer result = service.countByGender(MALE);
         assertTrue(result > 0);
-        verify(playerRepository).countByGender(anyString());
+        verify(playerRepository).countByGenderAndActive(anyString(), anyBoolean());
     }
 }

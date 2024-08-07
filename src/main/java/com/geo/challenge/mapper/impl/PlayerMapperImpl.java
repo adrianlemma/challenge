@@ -22,14 +22,16 @@ public class PlayerMapperImpl implements PlayerMapper {
                     player.getName(),
                     player.getSkill(),
                     player.getStrength(),
-                    player.getSpeed()
+                    player.getSpeed(),
+                    player.getActive()
             );
         } else {
             return new FemalePlayer(
                     player.getPlayerId(),
                     player.getName(),
                     player.getSkill(),
-                    player.getReactionTime()
+                    player.getReactionTime(),
+                    player.getActive()
             );
         }
     }
