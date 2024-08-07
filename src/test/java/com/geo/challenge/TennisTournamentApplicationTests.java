@@ -8,6 +8,7 @@ class TennisTournamentApplicationTests {
 
 	@Test
 	void contextLoads() {
+		TennisTournamentApplication.main(new String[] {});
 	}
 
 }
