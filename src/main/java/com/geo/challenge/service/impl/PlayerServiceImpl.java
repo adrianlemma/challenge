@@ -36,7 +36,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getAllPlayers() {
-        return playerRepository.findByActive(true);
+        return playerRepository.findAll();
     }
 
     @Override
@@ -56,6 +56,6 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Integer countByGender(String gender) {
-        return playerRepository.countByGender(gender);
+        return playerRepository.countByGenderAndActive(gender, true);
     }
 }

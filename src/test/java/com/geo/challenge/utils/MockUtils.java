@@ -66,11 +66,11 @@ public final class MockUtils {
     }
 
     public static MalePlayer mockMalePlayer() {
-        return new MalePlayer(1, "player1", 100, 100, 50.0);
+        return new MalePlayer(1, "player1", 100, 100, 50.0, true);
     }
 
     public static FemalePlayer mockFemalePlayer() {
-        return new FemalePlayer(1, "player1", 100, 0.01);
+        return new FemalePlayer(1, "player1", 100, 0.01, true);
     }
 
     public static PlayerRequest mockPlayerRequest(String gender) {
