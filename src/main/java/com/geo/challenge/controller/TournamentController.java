@@ -36,7 +36,7 @@ public class TournamentController {
         return ResponseEntity.ok(tournament);
     }
 
-    @GetMapping("/tournament")
+    @PostMapping("/tournament/query")
     public ResponseEntity<TournamentResponse> getTournament(@RequestBody TournamentRequest request) {
         TournamentResponse tournament = tournamentManagementService.getTournament(request);
         return ResponseEntity.ok(tournament);
