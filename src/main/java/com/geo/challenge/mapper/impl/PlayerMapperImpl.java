@@ -45,7 +45,7 @@ public class PlayerMapperImpl implements PlayerMapper {
                 player.getGender().equalsIgnoreCase(MALE) ? null : player.getReactionTime(),
                 player.getGender().equalsIgnoreCase(FEMALE) ? null : player.getStrength(),
                 player.getGender().equalsIgnoreCase(FEMALE) ? null : player.getSpeed(),
-                player.getGender()
+                player.getGender().equalsIgnoreCase(MALE) ? "M" : "F"
         );
     }
 }

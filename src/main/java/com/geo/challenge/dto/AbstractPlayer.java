@@ -6,14 +6,16 @@ public abstract class AbstractPlayer {
     private String name;
     private Integer skill;
     private Boolean active;
+    private String gender;
 
     protected AbstractPlayer() { }
 
-    protected AbstractPlayer(Integer playerId, String name, Integer skill, Boolean active) {
+    protected AbstractPlayer(Integer playerId, String name, Integer skill, Boolean active, String gender) {
         this.playerId = playerId;
         this.name = name;
         this.skill = skill;
         this.active = active;
+        this.gender = gender;
     }
 
     public int getPlayerId() {
@@ -46,5 +48,13 @@ public abstract class AbstractPlayer {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
