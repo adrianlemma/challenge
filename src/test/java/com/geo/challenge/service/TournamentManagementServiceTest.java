@@ -19,8 +19,7 @@ import org.mockito.quality.Strictness;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.geo.challenge.constant.ConstantValues.FEMALE;
-import static com.geo.challenge.constant.ConstantValues.MALE;
+import static com.geo.challenge.constant.ConstantValues.*;
 import static com.geo.challenge.utils.MockUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -49,10 +48,10 @@ class TournamentManagementServiceTest {
     @DisplayName("generate-random-tournament-ok")
     void testGenerateRandomTournamentOk() {
         List<Player> players = new ArrayList<>();
-        players.add(mockPlayer(MALE, 1));
-        players.add(mockPlayer(MALE, 2));
-        players.add(mockPlayer(MALE, 3));
-        players.add(mockPlayer(MALE, 4));
+        players.add(mockPlayer(MALE_LETTER, 1));
+        players.add(mockPlayer(MALE_LETTER, 2));
+        players.add(mockPlayer(MALE_LETTER, 3));
+        players.add(mockPlayer(MALE_LETTER, 4));
         when(tournamentService.existsByName(anyString())).thenReturn(false);
         when(playerService.countByGender(anyString())).thenReturn(4);
         when(playerService.findRandomPlayers(anyInt(), anyString())).thenReturn(players);
@@ -90,10 +89,10 @@ class TournamentManagementServiceTest {
     @DisplayName("generate-tournament-ok")
     void testGenerateTournamentOk() {
         List<Player> players = new ArrayList<>();
-        players.add(mockPlayer(FEMALE, 1));
-        players.add(mockPlayer(FEMALE, 2));
-        players.add(mockPlayer(FEMALE, 3));
-        players.add(mockPlayer(FEMALE, 4));
+        players.add(mockPlayer(FEMALE_LETTER, 1));
+        players.add(mockPlayer(FEMALE_LETTER, 2));
+        players.add(mockPlayer(FEMALE_LETTER, 3));
+        players.add(mockPlayer(FEMALE_LETTER, 4));
         when(tournamentService.existsByName(anyString())).thenReturn(false);
         when(playerService.countByGender(anyString())).thenReturn(4);
         when(playerService.findPlayersByIds(any(), anyString())).thenReturn(players);

@@ -16,8 +16,7 @@ import org.mockito.quality.Strictness;
 
 import java.util.List;
 
-import static com.geo.challenge.constant.ConstantValues.FEMALE;
-import static com.geo.challenge.constant.ConstantValues.MALE;
+import static com.geo.challenge.constant.ConstantValues.*;
 import static com.geo.challenge.utils.MockUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -43,7 +42,7 @@ class PlayerManagementServiceTest {
     @Test
     @DisplayName("get-player-ok")
     void testGetPlayerOk() {
-        when(playerService.findById(anyInt())).thenReturn(mockPlayer(MALE, 1));
+        when(playerService.findById(anyInt())).thenReturn(mockPlayer(MALE_LETTER, 1));
         when(playerMapper.playerToPlayerDTO(any())).thenReturn(mockMalePlayer());
         PlayerResponse player = service.getPlayer(1);
         assertNotNull(player);
@@ -70,7 +69,7 @@ class PlayerManagementServiceTest {
     @Test
     @DisplayName("get-all-players-ok")
     void testGetAllPlayersOk() {
-        when(playerService.getAllPlayers()).thenReturn(List.of(mockPlayer(MALE, 1)));
+        when(playerService.getAllPlayers()).thenReturn(List.of(mockPlayer(MALE_LETTER, 1)));
         when(playerMapper.playerToPlayerDTO(any())).thenReturn(mockMalePlayer());
         PlayerResponse player = service.getAllPlayers();
         assertNotNull(player);
@@ -89,7 +88,7 @@ class PlayerManagementServiceTest {
     @Test
     @DisplayName("create-player-ok")
     void testCreatePlayerOk() {
-        when(playerService.save(any())).thenReturn(mockPlayer(FEMALE, 1));
+        when(playerService.save(any())).thenReturn(mockPlayer(FEMALE_LETTER, 1));
         when(playerMapper.playerToPlayerDTO(any())).thenReturn(mockMalePlayer());
         PlayerResponse player = service.createPlayer(mockPlayerRequest(FEMALE));
         assertNotNull(player);
@@ -111,8 +110,8 @@ class PlayerManagementServiceTest {
     @DisplayName("update-player-ok")
     void testUpdatePlayerOk() {
         when(playerService.exists(anyInt())).thenReturn(true);
-        when(playerService.save(any())).thenReturn(mockPlayer(MALE, 1));
-        when(playerMapper.playerRequestToPlayer(any())).thenReturn(mockPlayer(MALE, 1));
+        when(playerService.save(any())).thenReturn(mockPlayer(MALE_LETTER, 1));
+        when(playerMapper.playerRequestToPlayer(any())).thenReturn(mockPlayer(MALE_LETTER, 1));
         when(playerMapper.playerToPlayerDTO(any())).thenReturn(mockMalePlayer());
         PlayerResponse player = service.updatePlayer(mockPlayerRequest(MALE), 1);
         assertNotNull(player);
@@ -145,7 +144,7 @@ class PlayerManagementServiceTest {
     void testUpdatePlayerUnexpectedError() {
         when(playerService.exists(anyInt())).thenReturn(true);
         when(playerService.save(any())).thenReturn(null);
-        when(playerMapper.playerRequestToPlayer(any())).thenReturn(mockPlayer(MALE, 1));
+        when(playerMapper.playerRequestToPlayer(any())).thenReturn(mockPlayer(MALE_LETTER, 1));
         assertThrows(GenericException.class,() -> service.updatePlayer(mockPlayerRequest(MALE), 1));
         verify(requestValidator).validatePlayerRequest(any());
         verify(playerService).exists(anyInt());
@@ -157,8 +156,8 @@ class PlayerManagementServiceTest {
     @Test
     @DisplayName("delete-player-ok")
     void testDeletePlayerOk() {
-        when(playerService.findById(anyInt())).thenReturn(mockPlayer(MALE, 1));
-        when(playerService.save(any())).thenReturn(mockPlayer(MALE, 1));
+        when(playerService.findById(anyInt())).thenReturn(mockPlayer(MALE_LETTER, 1));
+        when(playerService.save(any())).thenReturn(mockPlayer(MALE_LETTER, 1));
         service.deletePlayer(1);
         verify(playerService).findById(anyInt());
         verify(playerService).save(any());
@@ -183,7 +182,7 @@ class PlayerManagementServiceTest {
     @Test
     @DisplayName("delete-player-unexpected-error")
     void testDeletePlayerUnexpectedError() {
-        when(playerService.findById(anyInt())).thenReturn(mockPlayer(MALE, 1));
+        when(playerService.findById(anyInt())).thenReturn(mockPlayer(MALE_LETTER, 1));
         when(playerService.save(any())).thenReturn(null);
         assertThrows(GenericException.class, () -> service.deletePlayer(1));
         verify(playerService).findById(anyInt());

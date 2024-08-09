@@ -21,8 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.geo.challenge.constant.ConstantValues.FEMALE;
-import static com.geo.challenge.constant.ConstantValues.MALE;
+import static com.geo.challenge.constant.ConstantValues.*;
 
 public final class MockUtils {
 
@@ -35,7 +34,7 @@ public final class MockUtils {
         tournament.setType("male");
         tournament.setPhases(mockPhaseList());
         tournament.getPhases().forEach(phase -> phase.setTournament(tournament));
-        tournament.setWinner(mockPlayer(MALE, 1));
+        tournament.setWinner(mockPlayer(MALE_LETTER, 1));
         return tournament;
     }
 
@@ -54,14 +53,14 @@ public final class MockUtils {
         phaseList.get(0).setPhaseId(10);
         phaseList.get(0).setGames(new ArrayList<>());
         phaseList.get(0).getGames().add(
-                new TournamentPhaseGame(100, mockPlayer(MALE, 1), mockPlayer(MALE, 2), phaseList.get(0)));
+                new TournamentPhaseGame(100, mockPlayer(MALE_LETTER, 1), mockPlayer(MALE_LETTER, 2), phaseList.get(0)));
         phaseList.get(0).getGames().add(
-                new TournamentPhaseGame(101, mockPlayer(MALE, 3), mockPlayer(MALE, 4), phaseList.get(0)));
+                new TournamentPhaseGame(101, mockPlayer(MALE_LETTER, 3), mockPlayer(MALE_LETTER, 4), phaseList.get(0)));
         phaseList.get(1).setPhaseNumber(1);
         phaseList.get(1).setPhaseId(11);
         phaseList.get(1).setGames(new ArrayList<>());
         phaseList.get(1).getGames().add(
-                new TournamentPhaseGame(102, mockPlayer(MALE, 5), mockPlayer(MALE, 6), phaseList.get(1)));
+                new TournamentPhaseGame(102, mockPlayer(MALE_LETTER, 5), mockPlayer(MALE_LETTER, 6), phaseList.get(1)));
         return phaseList;
     }
 

@@ -10,8 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.geo.challenge.constant.ConstantValues.FEMALE;
-import static com.geo.challenge.constant.ConstantValues.MALE;
+import static com.geo.challenge.constant.ConstantValues.*;
 import static com.geo.challenge.utils.MockUtils.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -24,14 +23,14 @@ public class PlayerMapperTest {
     @Test
     @DisplayName("mapping-male-player-to-dto")
     void testMalePlayerMapping() {
-        MalePlayer player = (MalePlayer) playerMapper.playerToPlayerDTO(mockPlayer(MALE, 1));
+        MalePlayer player = (MalePlayer) playerMapper.playerToPlayerDTO(mockPlayer(MALE_LETTER, 1));
         assertNotNull(player);
     }
 
     @Test
     @DisplayName("mapping-female-player-to-dto")
     void testFemalePlayerMapping() {
-        FemalePlayer player = (FemalePlayer) playerMapper.playerToPlayerDTO(mockPlayer(FEMALE, 1));
+        FemalePlayer player = (FemalePlayer) playerMapper.playerToPlayerDTO(mockPlayer(FEMALE_LETTER, 1));
         assertNotNull(player);
     }
 

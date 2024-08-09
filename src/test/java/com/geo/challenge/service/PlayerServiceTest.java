@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.geo.challenge.constant.ConstantValues.FEMALE;
-import static com.geo.challenge.constant.ConstantValues.MALE;
+import static com.geo.challenge.constant.ConstantValues.*;
 import static com.geo.challenge.utils.MockUtils.mockPlayer;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -36,8 +35,8 @@ class PlayerServiceTest {
     @Test
     @DisplayName("save-player-ok")
     void testSavePlayerOk() {
-        when(playerRepository.save(any())).thenReturn(mockPlayer(FEMALE, 1));
-        Player result = service.save(mockPlayer(FEMALE, 1));
+        when(playerRepository.save(any())).thenReturn(mockPlayer(FEMALE_LETTER, 1));
+        Player result = service.save(mockPlayer(FEMALE_LETTER, 1));
         assertNotNull(result);
         verify(playerRepository).save(any());
     }
@@ -46,14 +45,14 @@ class PlayerServiceTest {
     @DisplayName("save-player-error")
     void testSavePlayerError() {
         when(playerRepository.save(any())).thenThrow(DataIntegrityViolationException.class);
-        assertThrows(PlayerException.class, () -> service.save(mockPlayer(FEMALE, 1)));
+        assertThrows(PlayerException.class, () -> service.save(mockPlayer(FEMALE_LETTER, 1)));
         verify(playerRepository).save(any());
     }
 
     @Test
     @DisplayName("find-player-by-id")
     void testFindPlayerById() {
-        when(playerRepository.findByPlayerIdAndActive(anyInt(), anyBoolean())).thenReturn(Optional.of(mockPlayer(FEMALE, 1)));
+        when(playerRepository.findByPlayerIdAndActive(anyInt(), anyBoolean())).thenReturn(Optional.of(mockPlayer(FEMALE_LETTER, 1)));
         Player result = service.findById(1);
         assertNotNull(result);
         verify(playerRepository).findByPlayerIdAndActive(anyInt(), anyBoolean());
