@@ -35,7 +35,7 @@ class TournamentControllerTest {
     @DisplayName("test-get-tournament")
     void testGetController() throws Exception {
         when(tournamentManagementService.getTournament(any())).thenReturn(mockTournamentResponse());
-        this.mockMvc.perform(get("/geopagos/tournament").content(asJsonString(mockTournamentRequest()))
+        this.mockMvc.perform(post("/geopagos/tournament/query").content(asJsonString(mockTournamentRequest()))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
         verify(tournamentManagementService).getTournament(any());
@@ -73,7 +73,7 @@ class TournamentControllerTest {
     @DisplayName("test-tournament-exception-controller")
     void testTournamentExceptionController() throws Exception {
         when(tournamentManagementService.getTournament(any())).thenThrow(new TournamentException("CODE", "DESC"));
-        this.mockMvc.perform(get("/geopagos/tournament").content(asJsonString(mockTournamentRequest()))
+        this.mockMvc.perform(post("/geopagos/tournament/query").content(asJsonString(mockTournamentRequest()))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
         verify(tournamentManagementService).getTournament(any());

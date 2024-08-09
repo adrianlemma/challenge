@@ -241,7 +241,25 @@ Además se debe considerar que la cantidad de jugadores debe ser potencia de 2 i
         ]
       }
       ```
-* #### Consulta de torneo - [GET]() - /geopagos/tournament
+* #### Consulta de lista de torneos - [GET]() - /geopagos/tournament/list
+    * Request ejemplo N/A
+
+    * Response ejemplo
+      ```
+      {
+        "tournaments": [{
+          "tournament_id": 123,
+          "name": "nombre de torneo",
+          "type": "male"
+        },
+        {
+          "tournament_id": 456,
+          "name": "other tournament",
+          "type": "female"
+        }]
+      }
+      ```
+* #### Consulta de torneo - [POST]() - /geopagos/tournament/query
     * Request ejemplo
       ```
       {
