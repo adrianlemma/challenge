@@ -9,7 +9,7 @@ public class FemalePlayer extends AbstractPlayer {
     }
 
     public FemalePlayer(Integer playerId, String name, Integer luck, Double reactionTime, Boolean active) {
-        super(playerId, name, luck, active);
+        super(playerId, name, luck, active, "F");
         this.reactionTime = reactionTime;
     }
 

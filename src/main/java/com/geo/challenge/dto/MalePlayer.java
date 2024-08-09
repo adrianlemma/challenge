@@ -10,7 +10,7 @@ public class MalePlayer extends AbstractPlayer {
     }
 
     public MalePlayer(Integer playerId, String name, Integer luck, Integer strength, Double speed, Boolean active) {
-        super(playerId, name, luck, active);
+        super(playerId, name, luck, active, "M");
         this.strength = strength;
         this.speed = speed;
     }
