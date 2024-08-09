@@ -79,10 +79,10 @@ class PlayerServiceTest {
     @Test
     @DisplayName("player-exists-by-id")
     void testPlayerExists() {
-        when(playerRepository.existsByPlayerIdAndActive(anyInt(), anyBoolean())).thenReturn(true);
+        when(playerRepository.existsByPlayerId(anyInt())).thenReturn(true);
         Boolean result = service.exists(1);
         assertTrue(result);
-        verify(playerRepository).existsByPlayerIdAndActive(anyInt(), anyBoolean());
+        verify(playerRepository).existsByPlayerId(anyInt());
     }
 
     @Test
