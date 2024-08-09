@@ -1,6 +1,7 @@
 package com.geo.challenge.service;
 
 import com.geo.challenge.dto.request.TournamentRequest;
+import com.geo.challenge.dto.response.TournamentData;
 import com.geo.challenge.dto.response.TournamentResponse;
 import com.geo.challenge.exception.GenericException;
 import com.geo.challenge.exception.TournamentException;
@@ -192,5 +193,14 @@ class TournamentManagementServiceTest {
         when(tournamentService.findByName(anyString())).thenReturn(null);
         assertThrows(GenericException.class, () -> service.getTournament(mockTournamentRequest()));
         verify(requestValidator).validateTournamentRequest(any());
+    }
+
+    @Test
+    @DisplayName("get-tournament-list")
+    void testGetTournamentList() {
+        when(tournamentService.getTournamentList()).thenReturn(List.of(mockTournamentData()));
+        List<TournamentData> result = service.getTournamentList();
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
     }
 }

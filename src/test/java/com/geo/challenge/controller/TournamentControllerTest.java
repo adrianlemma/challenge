@@ -11,6 +11,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static com.geo.challenge.utils.MockUtils.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -57,6 +59,14 @@ class TournamentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
         verify(tournamentManagementService).generateRandomTournament(any());
+    }
+
+    @Test
+    @DisplayName("test-get-tournament-list")
+    void testGetTournamentList() throws Exception {
+        when(tournamentManagementService.getTournamentList()).thenReturn(List.of(mockTournamentData()));
+        this.mockMvc.perform(get("/geopagos/tournament/list")).andExpect(status().isOk());
+        verify(tournamentManagementService).getTournamentList();
     }
 
     @Test

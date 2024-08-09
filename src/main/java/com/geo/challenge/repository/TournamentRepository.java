@@ -1,9 +1,12 @@
 package com.geo.challenge.repository;
 
+import com.geo.challenge.dto.response.TournamentData;
 import com.geo.challenge.model.Tournament;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
+import java.util.List;
 
 public interface TournamentRepository extends JpaRepository<Tournament, Integer> {
 
@@ -19,4 +22,6 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
     Tournament findByName(String name);
 
+    @Query("SELECT new com.geo.challenge.dto.response.TournamentData(t.tournamentId, t.name, t.type) FROM Tournament AS t")
+    List<TournamentData> getTournamentList();
 }
