@@ -3,6 +3,7 @@ package com.geo.challenge.service.impl;
 import com.geo.challenge.dto.request.TournamentGeneratorRequest;
 import com.geo.challenge.dto.request.TournamentRandomGeneratorRequest;
 import com.geo.challenge.dto.request.TournamentRequest;
+import com.geo.challenge.dto.response.TournamentData;
 import com.geo.challenge.dto.response.TournamentResponse;
 import com.geo.challenge.exception.GenericException;
 import com.geo.challenge.exception.TournamentException;
@@ -101,6 +102,11 @@ public class TournamentManagementServiceImpl implements TournamentManagementServ
         if (Objects.isNull(result))
             throw new GenericException(HttpStatus.NOT_FOUND, TOURNAMENT_NOT_FOUND.getCode(), TOURNAMENT_NOT_FOUND.getDescription());
         return tournamentMapper.tournamentToTournamentResponse(result);
+    }
+
+    @Override
+    public List<TournamentData> getTournamentList() {
+        return tournamentService.getTournamentList();
     }
 
     private void completePhases(Tournament tournament, List<Player> players) {

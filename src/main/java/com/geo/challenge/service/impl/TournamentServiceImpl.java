@@ -1,5 +1,6 @@
 package com.geo.challenge.service.impl;
 
+import com.geo.challenge.dto.response.TournamentData;
 import com.geo.challenge.model.Tournament;
 import com.geo.challenge.repository.TournamentPhaseGameRepository;
 import com.geo.challenge.repository.TournamentPhaseRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TournamentServiceImpl implements TournamentService {
@@ -59,6 +61,11 @@ public class TournamentServiceImpl implements TournamentService {
         saved.setPhases(tournamentPhaseRepository.saveAll(tournament.getPhases()));
         saved.getPhases().forEach(phase -> phase.setGames(tournamentPhaseGameRepository.saveAll(phase.getGames())));
         return saved;
+    }
+
+    @Override
+    public List<TournamentData> getTournamentList() {
+        return tournamentRepository.getTournamentList();
     }
 
     private Date getDate(String stringDate) {

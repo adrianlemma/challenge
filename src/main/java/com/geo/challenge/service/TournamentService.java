@@ -1,5 +1,6 @@
 package com.geo.challenge.service;
 
+import com.geo.challenge.dto.response.TournamentData;
 import com.geo.challenge.model.Tournament;
 import com.geo.challenge.model.TournamentPhase;
 
@@ -21,4 +22,5 @@ public interface TournamentService {
 
     Tournament save(Tournament tournament);
 
+    List<TournamentData> getTournamentList();
 }

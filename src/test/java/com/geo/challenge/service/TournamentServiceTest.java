@@ -1,5 +1,6 @@
 package com.geo.challenge.service;
 
+import com.geo.challenge.dto.response.TournamentData;
 import com.geo.challenge.model.Tournament;
 import com.geo.challenge.repository.TournamentPhaseGameRepository;
 import com.geo.challenge.repository.TournamentPhaseRepository;
@@ -13,10 +14,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.geo.challenge.constant.ConstantValues.MALE;
-import static com.geo.challenge.utils.MockUtils.mockPhaseList;
-import static com.geo.challenge.utils.MockUtils.mockTournament;
+import static com.geo.challenge.utils.MockUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -102,5 +103,14 @@ class TournamentServiceTest {
         verify(tournamentRepository).save(any());
         verify(phaseRepository).saveAll(any());
         verify(gameRepository, times(2)).saveAll(any());
+    }
+
+    @Test
+    @DisplayName("get-tournament-list")
+    void testGetTournamentList() {
+        when(tournamentRepository.getTournamentList()).thenReturn(List.of(mockTournamentData()));
+        List<TournamentData> result = service.getTournamentList();
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
     }
 }

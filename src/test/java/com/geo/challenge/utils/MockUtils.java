@@ -7,10 +7,7 @@ import com.geo.challenge.dto.request.PlayerRequest;
 import com.geo.challenge.dto.request.TournamentGeneratorRequest;
 import com.geo.challenge.dto.request.TournamentRandomGeneratorRequest;
 import com.geo.challenge.dto.request.TournamentRequest;
-import com.geo.challenge.dto.response.PlayerResponse;
-import com.geo.challenge.dto.response.TournamentGameResponse;
-import com.geo.challenge.dto.response.TournamentPhaseResponse;
-import com.geo.challenge.dto.response.TournamentResponse;
+import com.geo.challenge.dto.response.*;
 import com.geo.challenge.model.Player;
 import com.geo.challenge.model.Tournament;
 import com.geo.challenge.model.TournamentPhase;
@@ -123,6 +120,10 @@ public final class MockUtils {
 
     public static TournamentRandomGeneratorRequest mockTournamentRandomGeneratorRequest() {
         return new TournamentRandomGeneratorRequest("tournament_name", MALE, "31/12/2023", 4);
+    }
+
+    public static TournamentData mockTournamentData() {
+        return new TournamentData(1, "tournament", "male");
     }
 
     public static String asJsonString(final Object obj) {

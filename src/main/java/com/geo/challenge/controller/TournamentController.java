@@ -3,10 +3,13 @@ package com.geo.challenge.controller;
 import com.geo.challenge.dto.request.TournamentGeneratorRequest;
 import com.geo.challenge.dto.request.TournamentRandomGeneratorRequest;
 import com.geo.challenge.dto.request.TournamentRequest;
+import com.geo.challenge.dto.response.TournamentListResponse;
 import com.geo.challenge.dto.response.TournamentResponse;
 import com.geo.challenge.service.TournamentManagementService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.geo.challenge.constant.ConstantValues.GEOPAGOS;
 
@@ -37,5 +40,11 @@ public class TournamentController {
     public ResponseEntity<TournamentResponse> getTournament(@RequestBody TournamentRequest request) {
         TournamentResponse tournament = tournamentManagementService.getTournament(request);
         return ResponseEntity.ok(tournament);
+    }
+
+    @GetMapping("/tournament/list")
+    public ResponseEntity<TournamentListResponse> getTournamentList() {
+        TournamentListResponse tournamentList = new TournamentListResponse(tournamentManagementService.getTournamentList());
+        return ResponseEntity.ok(tournamentList);
     }
 }
