@@ -41,7 +41,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Boolean exists(Integer playerId) {
-        return playerRepository.existsByPlayerIdAndActive(playerId, true);
+        return playerRepository.existsByPlayerId(playerId);
     }
 
     @Override

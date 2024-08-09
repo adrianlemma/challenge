@@ -12,7 +12,7 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     Optional<Player> findByPlayerIdAndActive(Integer playerId, Boolean active);
 
-    Boolean existsByPlayerIdAndActive(Integer playerId, Boolean active);
+    Boolean existsByPlayerId(Integer playerId);
 
     Integer countByGenderAndActive(String gender, boolean active);
 
