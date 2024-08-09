@@ -8,15 +8,14 @@ import com.geo.challenge.mapper.PlayerMapper;
 import com.geo.challenge.model.Player;
 import org.springframework.stereotype.Component;
 
-import static com.geo.challenge.constant.ConstantValues.FEMALE;
-import static com.geo.challenge.constant.ConstantValues.MALE;
+import static com.geo.challenge.constant.ConstantValues.*;
 
 @Component
 public class PlayerMapperImpl implements PlayerMapper {
 
     @Override
     public AbstractPlayer playerToPlayerDTO(Player player) {
-        if (player.getGender().equalsIgnoreCase(MALE)) {
+        if (player.getGender().equalsIgnoreCase(MALE_LETTER)) {
             return new MalePlayer(
                     player.getPlayerId(),
                     player.getName(),
@@ -45,7 +44,7 @@ public class PlayerMapperImpl implements PlayerMapper {
                 player.getGender().equalsIgnoreCase(MALE) ? null : player.getReactionTime(),
                 player.getGender().equalsIgnoreCase(FEMALE) ? null : player.getStrength(),
                 player.getGender().equalsIgnoreCase(FEMALE) ? null : player.getSpeed(),
-                player.getGender().equalsIgnoreCase(MALE) ? "M" : "F"
+                player.getGender().equalsIgnoreCase(MALE) ? MALE_LETTER : FEMALE_LETTER
         );
     }
 }

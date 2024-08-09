@@ -1,5 +1,7 @@
 package com.geo.challenge.dto;
 
+import static com.geo.challenge.constant.ConstantValues.MALE_LETTER;
+
 public class MalePlayer extends AbstractPlayer {
 
     private Integer strength;
@@ -10,7 +12,7 @@ public class MalePlayer extends AbstractPlayer {
     }
 
     public MalePlayer(Integer playerId, String name, Integer luck, Integer strength, Double speed, Boolean active) {
-        super(playerId, name, luck, active, "M");
+        super(playerId, name, luck, active, MALE_LETTER);
         this.strength = strength;
         this.speed = speed;
     }
