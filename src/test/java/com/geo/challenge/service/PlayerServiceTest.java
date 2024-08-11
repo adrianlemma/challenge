@@ -20,8 +20,7 @@ import static com.geo.challenge.constant.ConstantValues.*;
 import static com.geo.challenge.utils.MockUtils.mockPlayer;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PlayerServiceTest {
@@ -89,26 +88,32 @@ class PlayerServiceTest {
     @DisplayName("get-random-players")
     void testGetRandomPlayers() {
         when(playerRepository.findRandomPlayers(anyInt(), anyString())).thenReturn(new ArrayList<>());
-        List<Player> result = service.findRandomPlayers(1, MALE);
-        assertNotNull(result);
-        verify(playerRepository).findRandomPlayers(anyInt(), anyString());
+        List<Player> resultM = service.findRandomPlayers(1, MALE);
+        List<Player> resultF = service.findRandomPlayers(1, FEMALE);
+        assertNotNull(resultM);
+        assertNotNull(resultF);
+        verify(playerRepository, times(2)).findRandomPlayers(anyInt(), anyString());
     }
 
     @Test
     @DisplayName("get-players-by-id-list")
     void testGetPlayersByIdList() {
         when(playerRepository.findPlayersByIds(any(), anyString())).thenReturn(new ArrayList<>());
-        List<Player> result = service.findPlayersByIds(List.of(1), MALE);
-        assertNotNull(result);
-        verify(playerRepository).findPlayersByIds(any(), anyString());
+        List<Player> resultM = service.findPlayersByIds(List.of(1), MALE);
+        List<Player> resultF = service.findPlayersByIds(List.of(1), FEMALE);
+        assertNotNull(resultM);
+        assertNotNull(resultF);
+        verify(playerRepository, times(2)).findPlayersByIds(any(), anyString());
     }
 
     @Test
     @DisplayName("count-players-by-gender")
     void testCountPlayersByGender() {
         when(playerRepository.countByGenderAndActive(anyString(), anyBoolean())).thenReturn(5);
-        Integer result = service.countByGender(MALE);
-        assertTrue(result > 0);
-        verify(playerRepository).countByGenderAndActive(anyString(), anyBoolean());
+        Integer resultM = service.countByGender(MALE);
+        Integer resultF = service.countByGender(FEMALE);
+        assertTrue(resultF > 0);
+        assertTrue(resultM > 0);
+        verify(playerRepository, times(2)).countByGenderAndActive(anyString(), anyBoolean());
     }
 }

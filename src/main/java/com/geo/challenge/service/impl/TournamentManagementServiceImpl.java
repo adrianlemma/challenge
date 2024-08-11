@@ -23,7 +23,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
 
-import static com.geo.challenge.constant.ConstantValues.MALE;
+import static com.geo.challenge.constant.ConstantValues.MALE_LETTER;
 import static com.geo.challenge.constant.ErrorCodes.*;
 
 @Service
@@ -148,7 +148,7 @@ public class TournamentManagementServiceImpl implements TournamentManagementServ
     }
 
     private Double getPoints(Player player) {
-        if (player.getGender().equalsIgnoreCase(MALE))
+        if (player.getGender().equalsIgnoreCase(MALE_LETTER))
             return player.getSkill() + player.getSpeed() + player.getStrength() / 2 + random.nextInt(51);
         else
             return player.getSkill() + (1 - player.getReactionTime()) * 50 + random.nextInt(51);
