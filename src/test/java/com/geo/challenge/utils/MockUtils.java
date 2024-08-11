@@ -36,7 +36,7 @@ public final class MockUtils {
     }
 
     public static Player mockPlayer(String gender, Integer id) {
-        if (gender.equals(MALE))
+        if (gender.equals(MALE_LETTER))
             return new Player(id, "jugador" + id, 100, null, 100, 50.0, gender);
         else
             return new Player(id, "jugadora" + id, 100, 0.01, null, null, gender);

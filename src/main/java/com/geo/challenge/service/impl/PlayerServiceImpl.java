@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.geo.challenge.constant.ConstantValues.*;
 import static com.geo.challenge.constant.ErrorCodes.PLAYER_NAME_DUPLICATED;
 
 @Service
@@ -46,16 +47,19 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> findRandomPlayers(Integer quantity, String gender) {
-        return playerRepository.findRandomPlayers(quantity, gender);
+        String genderDB = gender.equalsIgnoreCase(MALE) ? MALE_LETTER : FEMALE_LETTER;
+        return playerRepository.findRandomPlayers(quantity, genderDB);
     }
 
     @Override
     public List<Player> findPlayersByIds(List<Integer> playerIds, String gender) {
-        return playerRepository.findPlayersByIds(playerIds, gender);
+        String genderDB = gender.equalsIgnoreCase(MALE) ? MALE_LETTER : FEMALE_LETTER;
+        return playerRepository.findPlayersByIds(playerIds, genderDB);
     }
 
     @Override
     public Integer countByGender(String gender) {
-        return playerRepository.countByGenderAndActive(gender, true);
+        String genderDB = gender.equalsIgnoreCase(MALE) ? MALE_LETTER : FEMALE_LETTER;
+        return playerRepository.countByGenderAndActive(genderDB, true);
     }
 }
